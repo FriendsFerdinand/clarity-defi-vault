@@ -86,7 +86,7 @@
     )
     (try! (as-contract (contract-call? asset transfer amount this-contract recipient none)))
 
-    ;; does not check for underflow
+    ;; does not check for underflow or if user already deposited
     (map-set vaults
       vault-id
       { asset-contract: asset-principal, vault-holdings: (if (> amount asset-amount) u0 (- asset-amount amount)) })
